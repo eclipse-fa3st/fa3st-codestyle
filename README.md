@@ -5,6 +5,26 @@
 
 This project provides the codestyle checks used in all components of the FA³ST Ecosystem.
 
+It uses [Spotless](https://github.com/diffplug/spotless) and [Checkstyle](https://checkstyle.sourceforge.io/) and include all required configuration files.
+
+## Usage
+
+### Maven
+
+```xml
+<dependency>
+	<groupId>org.eclipse.digitaltwin.fa3st</groupId>
+	<artifactId>fa3st-codestyle</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+</dependency>
+```
+
+### Gradle
+
+```gradle
+implementation 'org.eclipse.digitaltwin.fa3st:fa3st-codestyle:1.0.0-SNAPSHOT'
+```
+
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions are **greatly appreciated**.
