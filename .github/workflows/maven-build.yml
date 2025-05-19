@@ -38,3 +38,16 @@ jobs:
     - name: Build with Maven
       run: |
         mvn verify -B
+
+    - name: Set env variables
+      run: |
+        echo "Exporting Variables"
+        export version=$(mvn -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive exec:exec -q)
+        echo "VERSION=${version}"     >> $GITHUB_ENV
+
+    - name: Deploy SNAPSHOTS
+      if:  ${{ endsWith(env.VERSION, '-SNAPSHOT') }}
+      env:
+        CENTRAL_SONATYPE_TOKEN_USERNAME: ${{ secrets.CENTRAL_SONATYPE_TOKEN_USERNAME }}
+        CENTRAL_SONATYPE_TOKEN_PASSWORD: ${{ secrets.CENTRAL_SONATYPE_TOKEN_PASSWORD }}
+      run: mvn clean deploy -P release --settings maven-ci-settings.xml -B

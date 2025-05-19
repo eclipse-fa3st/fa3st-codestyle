@@ -8,6 +8,8 @@
     <description>Codestyle for FA³ST.</description>
     <properties>
         <checkstyle.version>10.23.0</checkstyle.version>
+        <maven.plugin.central-publishing-maven.version>0.7.0</maven.plugin.central-publishing-maven.version>
+        <maven.plugin.eclipse-jarsigner.version>1.5.2</maven.plugin.eclipse-jarsigner.version>
         <maven.plugin.spotless.version>2.44.4</maven.plugin.spotless.version>
         <resources.dir>${basedir}/src/main/resources</resources.dir>
         <sonar.skip>true</sonar.skip>
@@ -98,4 +100,37 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>release</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.eclipse.cbi.maven.plugins</groupId>
+                        <artifactId>eclipse-jarsigner-plugin</artifactId>
+                        <version>${maven.plugin.eclipse-jarsigner.version}</version>
+                        <executions>
+                            <execution>
+                                <id>sign</id>
+                                <goals>
+                                    <goal>sign</goal>
+                                </goals>
+                                <phase>verify</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.central</groupId>
+                        <artifactId>central-publishing-maven-plugin</artifactId>
+                        <version>${maven.plugin.central-publishing-maven.version}</version>
+                        <extensions>true</extensions>
+                        <configuration>
+                            <publishingServerId>central</publishingServerId>
+                            <autoPublish>true</autoPublish>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>
