@@ -53,7 +53,7 @@ jobs:
         GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
         GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       run: |
-        echo $GPG_PRIVATE_KEY | gpg --import
+        echo $GPG_PRIVATE_KEY | base64 --decode | gpg --import
         gpg --list-secret-keys --keyid-format LONG
         echo $GPG_PASSPHRASE | gpg --batch --yes --pinentry-mode loopback --default-key $GPG_KEY_ID --passphrase-fd 0 --sign
 
