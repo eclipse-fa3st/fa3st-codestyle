@@ -45,6 +45,18 @@ jobs:
         export version=$(mvn -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive exec:exec -q)
         echo "VERSION=${version}"     >> $GITHUB_ENV
 
+    - name: Set up GnuPG
+      if:  ${{ endsWith(env.VERSION, '-SNAPSHOT') }}
+      env:
+        GPG_EXECUTABLE: gpg
+        GPG_KEY_ID: ${{ secrets.GPG_KEY_ID }}
+        GPG_PRIVATE_KEY: ${{ secrets.GPG_PRIVATE_KEY }}
+        GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      run: |
+        echo $GPG_PRIVATE_KEY | gpg --import
+        gpg --list-secret-keys --keyid-format LONG
+        echo $GPG_PASSPHRASE | gpg --batch --yes --pinentry-mode loopback --default-key $GPG_KEY_ID --passphrase-fd 0 --sign
+
     - name: Deploy SNAPSHOTS
       if:  ${{ endsWith(env.VERSION, '-SNAPSHOT') }}
       env:
