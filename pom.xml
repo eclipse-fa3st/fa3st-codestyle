@@ -115,6 +115,18 @@
     <profiles>
         <profile>
             <id>release</id>
+            <pluginRepositories>
+                <pluginRepository>
+                    <id>eclipse</id>
+                    <url>https://repo.eclipse.org/content/repositories/cbi/</url>
+                    <releases>
+                        <enabled>true</enabled>
+                    </releases>
+                    <snapshots>
+                        <enabled>false</enabled>
+                    </snapshots>
+                </pluginRepository>
+            </pluginRepositories>
             <build>
                 <plugins>
                     <plugin>
