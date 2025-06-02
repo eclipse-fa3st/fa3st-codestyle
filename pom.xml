@@ -8,7 +8,7 @@
     <description>Codestyle for FA³ST.</description>
     <properties>
         <checkstyle.version>10.24.0</checkstyle.version>
-        <maven.plugin.spotless.version>2.44.4</maven.plugin.spotless.version>
+        <maven.plugin.spotless.version>2.44.5</maven.plugin.spotless.version>
         <resources.dir>${basedir}/src/main/resources</resources.dir>
         <sonar.skip>true</sonar.skip>
     </properties>
