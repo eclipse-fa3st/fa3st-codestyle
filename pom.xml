@@ -35,7 +35,7 @@
         <url>https://github.com/eclipse-fa3st/fa3st-codestyle/issues</url>
     </issueManagement>
     <properties>
-        <checkstyle.version>10.26.0</checkstyle.version>
+        <checkstyle.version>10.26.1</checkstyle.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <maven.plugin.central-publishing.version>0.8.0</maven.plugin.central-publishing.version>
